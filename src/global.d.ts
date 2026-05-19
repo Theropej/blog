@@ -6,6 +6,7 @@ declare global {
 	}
 
 	interface Window {
+			_lastScrollTop?: number;
 		// biome-ignore lint/suspicious/noExplicitAny: External library
 		swup: any;
 		spineModelInitialized?: boolean;

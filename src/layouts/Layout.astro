@@ -1393,21 +1393,35 @@ function disableAnimation() {
       });
     }
 
-    if (stickyNavbar && navbar) {
-      operations.push(() => {
-        navbar.classList.remove("navbar-hidden");
-      });
-    } else if (bannerEnabled && navbar) {
-      operations.push(() => {
-        const threshold = window.innerHeight * (BANNER_HEIGHT_HOME / 100) - 88;
+	    if (stickyNavbar && navbar) {
+	      // stickyNavbar 模式下始终可见，不做隐藏
+	      operations.push(() => {
+	        navbar.classList.remove("navbar-hidden");
+	      });
+	    } else if (bannerEnabled && navbar) {
+	      // Headroom 行为：下滑隐藏，上滑显示
+	      operations.push(() => {
+	        const hideThreshold = window.innerHeight * (BANNER_HEIGHT_HOME / 100) - 88;
+	        const scrollDelta = scrollTop - (window._lastScrollTop ?? 0);
+	        const isScrollingDown = scrollDelta > 3;
+	        const isScrollingUp = scrollDelta < -3;
+	        const isPastBanner = scrollTop > hideThreshold;
+	        const isNearTop = scrollTop < 50;
 
-        if (scrollTop >= threshold) {
-          navbar.classList.add("navbar-hidden");
-        } else {
-          navbar.classList.remove("navbar-hidden");
-        }
-      });
-    }
+	        if (isNearTop) {
+	          // 页面顶部：始终显示（semifull 模式下为透明）
+	          navbar.classList.remove("navbar-hidden");
+	        } else if (isScrollingDown && isPastBanner) {
+	          // 向下滚动且越过 banner → 隐藏
+	          navbar.classList.add("navbar-hidden");
+	        } else if (isScrollingUp) {
+	          // 向上滚动 → 显示
+	          navbar.classList.remove("navbar-hidden");
+	        }
+
+	        window._lastScrollTop = scrollTop;
+	      });
+	    }
 
     if (navbarElement) {
       operations.push(() => {
