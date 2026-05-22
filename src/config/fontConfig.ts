@@ -1,11 +1,11 @@
 // 字体配置
 export const fontConfig = {
 	// 是否启用自定义字体功能
-	enable: false,
+	enable: true,
 	// 是否预加载字体文件
 	preload: true,
 	// 当前选择的字体，支持多个字体组合
-	selected: ["misans-regular"],
+	selected: ["lxgw-wenkai"],
 
 	// 字体列表
 	// 推荐使用可靠的 CDN 服务商提供的字体链接，它天然做了按需分片加载，且性能较好
@@ -20,6 +20,17 @@ export const fontConfig = {
 			src: "", // 系统字体无需 src
 			family:
 				"system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
+		},
+
+		// LXGW WenKai 霞鹜文楷
+		"lxgw-wenkai": {
+			id: "lxgw-wenkai",
+			name: "LXGW WenKai",
+			src: "/fonts/LXGWWenKai-Regular.woff2",
+			family: "LXGW WenKai",
+			weight: 400,
+			format: "woff2",
+			display: "swap" as const,
 		},
 
 		// Google Fonts - Zen Maru Gothic

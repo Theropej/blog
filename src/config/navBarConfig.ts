@@ -34,10 +34,7 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		url: "/my/",
 		icon: "material-symbols:person",
 		children: [
-			// 根据配置决定是否添加相册，在siteConfig关闭pages.gallery时导航栏不显示相册
 			...(siteConfig.pages.gallery ? [LinkPreset.Gallery] : []),
-
-			// 根据配置决定是否添加番组计划，在siteConfig关闭pages.bangumi时导航栏不显示番组计划
 			...(siteConfig.pages.bangumi ? [LinkPreset.Bangumi] : []),
 		],
 	});
@@ -48,48 +45,35 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		url: "/content/",
 		icon: "material-symbols:info",
 		children: [
-			// 根据配置决定是否添加赞助，在siteConfig关闭pages.sponsor时导航栏不显示赞助
 			...(siteConfig.pages.sponsor ? [LinkPreset.Sponsor] : []),
-
-			// 关于页面
 			LinkPreset.About,
 		],
 	});
 
-	// 自定义导航栏链接,并且支持多级菜单
+	// 导航栏链接下拉菜单
 	links.push({
 		name: "链接",
 		url: "/links/",
 		icon: "material-symbols:link",
-
-		// 子菜单
 		children: [
 			{
 				name: "GitHub",
-				url: "https://github.com/CuteLeaf/Firefly",
+				url: "https://github.com/Theropej/",
 				external: true,
 				icon: "fa7-brands:github",
 			},
 			{
 				name: "Gitee",
-				url: "https://gitee.com/CuteLeaf/Firefly",
+				url: "https://gitee.com/theropej",
 				external: true,
 				icon: "fa7-brands:gitee",
-			},
-			{
-				name: "QQ交流群",
-				url: "https://qm.qq.com/q/ZGsFa8qX2G",
-				external: true,
-				icon: "fa7-brands:qq",
-			},
+			}
 		],
 	});
 
-	// 仅返回链接，其它导航搜索相关配置在模块顶层常量中独立导出
 	return { links } as NavBarConfig;
 };
 
-// 导航搜索配置
 export const navBarSearchConfig: NavBarSearchConfig = {
 	method: NavBarSearchMethod.PageFind,
 };

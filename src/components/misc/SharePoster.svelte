@@ -17,7 +17,7 @@ export let avatar: string | null = null;
 let showModal = false;
 let posterImage: string | null = null;
 let generating = false;
-let themeColor = "#558e88"; // Default blue
+let themeColor = "#e8a0a0"; // Default pink
 
 onMount(() => {
 	// Get theme color from CSS variable

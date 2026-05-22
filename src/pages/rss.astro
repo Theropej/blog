@@ -123,7 +123,7 @@ const recentPosts = posts.slice(0, 6);
                     await navigator.clipboard.writeText(url);
                     const originalText = this.textContent;
                     this.textContent = this.getAttribute('data-copied-text') || '';
-                    this.style.backgroundColor = 'var(--success-color, #10b981)';
+                    this.style.backgroundColor = 'var(--primary)';
                     
                     setTimeout(() => {
                         this.textContent = originalText;

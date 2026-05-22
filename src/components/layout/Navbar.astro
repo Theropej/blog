@@ -40,7 +40,7 @@ const navbarBlur =
 		: 0;
 
 // 获取导航栏标题，如果没有设置则使用 siteConfig.title
-const navbarTitle = siteConfig.navbar.title || siteConfig.title;
+const navbarTitle = siteConfig.navbar.title ?? siteConfig.title;
 
 // 获取导航栏宽度配置
 const navbarWidthFull = siteConfig.navbar.widthFull ?? false;
@@ -106,7 +106,7 @@ if (isLocalSrcLogo) {
                                         <Picture
                                             src={logoImg}
                                             alt={siteConfig.navbar.logo.alt || siteConfig.title}
-                                            class="h-7 w-7 mb-1 mr-2 object-contain"
+                                            class="h-[2.5rem] md:h-[3.5rem] max-w-full mr-3 ml-3 object-contain"
                                             formats={getImageFormats()}
                                             fallbackFormat={getFallbackFormat()}
                                             widths={[28, 56]}
@@ -114,9 +114,9 @@ if (isLocalSrcLogo) {
                                             fetchpriority="high"
                                         />
                                     ) : siteConfig.navbar.logo?.type === "image" ? (
-                                        <img src={url(siteConfig.navbar.logo.value)} alt={siteConfig.navbar.logo.alt || siteConfig.title} class="h-7 w-7 mb-1 mr-2 object-contain" fetchpriority="high" />
+                                        <img src={url(siteConfig.navbar.logo.value)} alt={siteConfig.navbar.logo.alt || siteConfig.title} class="h-[2.5rem] md:h-[3.5rem] max-w-full mr-3 ml-3 object-contain" fetchpriority="high" />
                                     ) : siteConfig.navbar.logo?.type === "url" ? (
-                                        <img src={siteConfig.navbar.logo.value} alt={siteConfig.navbar.logo.alt || siteConfig.title} class="h-7 w-7 mb-1 mr-2 object-contain" fetchpriority="high" />
+                                        <img src={siteConfig.navbar.logo.value} alt={siteConfig.navbar.logo.alt || siteConfig.title} class="h-[2.5rem] md:h-[3.5rem] max-w-full mr-3 ml-3 object-contain" fetchpriority="high" />
                                     ) : (
                                         <Icon name="material-symbols:home-pin-outline" is:inline class="text-[1.75rem] mb-1 mr-2" />
                                     )}
